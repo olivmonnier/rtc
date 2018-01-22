@@ -4,10 +4,11 @@ import Content from './Content.jsx'
 
 class Main extends Component {
   render() {
+    console.log(this.props)
     return (
       <div>
         <TitleBar/>
-        <Content/>
+        <Content {...this.props} />
       </div>
     )
   }

@@ -3,12 +3,10 @@ import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import App from './Containers/App.jsx'
-// import { appReducer } from './Reducers'
+import appReducer from './Reducers'
 
-// const store = createStore(appReducer)
+const store = createStore(appReducer)
 
-// render(<Provider store={store}>
-//   <App />
-// </Provider>, document.querySelector('root'))
-
-render(<App />, document.querySelector('root'))
+render(<Provider store={store}>
+  <App />
+</Provider>, document.querySelector('root'))
