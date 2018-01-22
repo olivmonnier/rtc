@@ -8,11 +8,11 @@ class Content extends Component {
     return (
       <Card>
         <CardMedia>
-          <div>{ states.stream.streaming ? 'Hello' : 'Oups'}</div>
+          <div>{ states.streaming ? 'Hello' : 'Oups'}</div>
           <video autoPlay muted id="localVideo"></video>
         </CardMedia>
         <CardActions>
-          <FlatButton label="Action" onClick={() => actions.toggleStream()}/>
+          <FlatButton label="Action" onClick={actions.toggleStream}/>
         </CardActions>
       </Card>
     )

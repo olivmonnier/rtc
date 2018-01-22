@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux'
 import { TOGGLE_STREAM } from '../Constants/ActionTypes'
 
 const stateDefault = {
@@ -17,8 +16,4 @@ function stream(state = stateDefault, action) {
   }
 }
 
-const appReducer = combineReducers({
-  stream
-})
-
-export default appReducer
+export default stream
