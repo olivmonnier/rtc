@@ -17,8 +17,10 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "simplewebrtc": "^3.0.1",
-    "socket.io": "^2.0.4",
+    "redux-actions": "^2.2.1",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0",
+    "simple-peer": "^8.2.0",
     "socket.io-client": "^2.0.4",
     "utf-8-validate": "^4.0.0"
   },
@@ -28,7 +30,7 @@
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
-    "electron": "^1.8.1",
+    "electron": "1.7.8",
     "webpack": "^3.10.0"
   }
 }

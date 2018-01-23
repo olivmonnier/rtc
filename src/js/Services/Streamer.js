@@ -1,21 +1,17 @@
 const io = require('socket.io-client')
-const SimpleWebRTC = require('simplewebrtc')
+const { desktopCapturer } = require('electron')
 import { rtcServer, media } from '../Configs'
 
 export default class Streamer {
   constructor() {
-    this.webrtc = new SimpleWebRTC({
-      url: rtcServer,
-      socketio: io,
-      localVideoEl: 'localVideo',
-      debug: true,
-      autoRemoveVideos: true,
-      autoRequestMedia: true,
-      media
+    this.webrtc = null
+  }
+  getSources() {
+    return new Promise((resolve, reject) => {
+      desktopCapturer.getSources({ types: ['window', 'screen'] }, (error, sources) => {
+        if (error) reject(error)
+        resolve(sources)
+      })
     })
-
-    this.webrtc.on('connectionReady', (sessionId) => {
-      this.webrtc.createRoom(sessionId);
-    });
   }
 }

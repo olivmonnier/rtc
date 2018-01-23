@@ -1,1 +1,2 @@
+export const FETCH_SOURCES = 'FETCH_SOURCES'
 export const TOGGLE_STREAM = 'TOGGLE_STREAM'
