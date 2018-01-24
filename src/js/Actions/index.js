@@ -1,5 +1,6 @@
 import {
   FETCH_SOURCES,
+  GET_MEDIA,
   SELECT_SOURCE,
   START_STREAM,
   TOGGLE_STREAM
@@ -13,4 +14,4 @@ export const selectSource = createAction(SELECT_SOURCE, (event, key, payload) =>
 
 export const toggleStream = createAction(TOGGLE_STREAM)
 
-export const startStream = createAction(START_STREAM, (source) => Streamer.getUserMedia(source))
+export const getMedia = createAction(GET_MEDIA, (source) => Streamer.getUserMedia(source))

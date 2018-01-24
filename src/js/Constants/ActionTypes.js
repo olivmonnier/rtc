@@ -1,4 +1,5 @@
 export const FETCH_SOURCES = 'FETCH_SOURCES'
+export const GET_MEDIA = 'GET_MEDIA'
 export const SELECT_SOURCE = 'SELECT_SOURCE'
 export const START_STREAM = 'START_STREAM'
 export const TOGGLE_STREAM = 'TOGGLE_STREAM'

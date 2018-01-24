@@ -1,5 +1,6 @@
 import { 
   FETCH_SOURCES,
+  GET_MEDIA,
   SELECT_SOURCE,
   START_STREAM,
   TOGGLE_STREAM 
@@ -9,7 +10,7 @@ import { handleActions, handleAction } from 'redux-actions'
 const defaultState = {
   sources: [],
   sourceSelected: {},
-  stream: null,
+  media: null,
   streaming: false
 }
 
@@ -22,8 +23,8 @@ const streamReducer = handleActions({
       state.sources.find(source => source.id === action.payload) : 
       {}
   }),
-  [START_STREAM]: (state, action) => ({
-    ...state, stream: action.payload
+  [GET_MEDIA]: (state, action) => ({
+    ...state, media: action.payload
   }),
   [TOGGLE_STREAM]: (state, action) => ({
     ...state, streaming: !state.streaming

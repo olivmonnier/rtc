@@ -27,7 +27,6 @@ const selectSourceComponent = (states, actions) => {
 class Content extends Component {
   constructor(props) {
     super(props)
-    this.toggleStream = this.toggleStream.bind(this)
   }
   componentDidMount(){
     this.props.actions.fetchSources()
@@ -35,10 +34,8 @@ class Content extends Component {
   componentWillReceiveProps(nextProps) {
     const { states, actions } = this.props
 
-    if (nextProps.states.streaming) {
-      if (nextProps.states.sourceSelected !== states.sourceSelected) {
-        actions.startStream(nextProps.states.sourceSelected)
-      }
+    if (nextProps.states.sourceSelected !== states.sourceSelected) {
+      actions.getMedia(nextProps.states.sourceSelected)
     }
   }
   render() {
@@ -47,24 +44,15 @@ class Content extends Component {
       <Card>
         <CardText>
           { selectSourceComponent(states, actions) }
-        </CardText>        
-          { states.streaming ? (
-            <CardMedia>
-              <video autoPlay muted id="localVideo" src={states.stream ? URL.createObjectURL(states.stream) : ''}></video>
-            </CardMedia>
-          ) : '' }       
+        </CardText>             
+        <CardMedia>
+          <video autoPlay muted id="localVideo" src={states.media ? URL.createObjectURL(states.media) : ''}></video>
+        </CardMedia>
         <CardActions>
-          <FlatButton label="Action1" onClick={this.toggleStream}/>
+          <FlatButton label="Action1" onClick={actions.toggleStream}/>
         </CardActions>
       </Card>
     )
-  }
-  toggleStream() {
-    const { states, actions } = this.props
-    const source = (!states.streaming) ? states.sourceSelected : null
-
-    // actions.startStream(source)
-    actions.toggleStream()
   }
 }
 
