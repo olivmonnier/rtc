@@ -31,10 +31,11 @@ export default {
 function onMessage(socket, stream, data) {
   console.log(data)
   if (data === 'ready') {
-    if (peer) return
+    if (peer) {
+      peer.destroy()
+    }
     peer = new Peer({ initiator: true, stream })
     peer.on('signal', (signal) => socket.emit('message', JSON.stringify(signal)))
-
   } else {
     peer.signal(JSON.parse(data))
   }
