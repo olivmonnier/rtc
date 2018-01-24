@@ -14,7 +14,8 @@ const selectSourceComponent = (states, actions) => {
       floatingLabelText="Source"
       onChange={selectSource}
       value={(sourceSelected !== {}) ? sourceSelected.id : ''}
-      autoWidth={true}>
+      autoWidth={true}
+      maxHeight={300}>
       {
         sources.map(source => (
           <MenuItem value={source.id} key={source.id} primaryText={source.name} />
@@ -50,6 +51,7 @@ class Content extends Component {
         </CardMedia>
         <CardActions>
           <FlatButton label="Action1" onClick={actions.toggleStream}/>
+          <FlatButton label="Action2" onClick={() => Streamer.createPeerConnection(states.media)}/>
         </CardActions>
       </Card>
     )
