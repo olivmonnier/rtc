@@ -10,5 +10,12 @@ export default {
         resolve(sources)
       })
     })
-  }
+  },
+  getUserMedia(source) {
+    if (source) {
+      media.video.mandatory['chromeMediaSourceId'] = source.id
+
+      return navigator.mediaDevices.getUserMedia(media)
+    }
+  } 
 }

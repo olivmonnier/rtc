@@ -1,6 +1,7 @@
 import {
   FETCH_SOURCES,
   SELECT_SOURCE,
+  START_STREAM,
   TOGGLE_STREAM
 } from '../Constants/ActionTypes'
 import { createAction } from 'redux-actions'
@@ -11,3 +12,5 @@ export const fetchSources = createAction(FETCH_SOURCES, Streamer.getSources)
 export const selectSource = createAction(SELECT_SOURCE, (event, key, payload) => payload)
 
 export const toggleStream = createAction(TOGGLE_STREAM)
+
+export const startStream = createAction(START_STREAM, (source) => Streamer.getUserMedia(source))
