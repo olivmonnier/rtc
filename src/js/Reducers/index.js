@@ -1,15 +1,9 @@
-import { 
-  CONNECT_SIGNAL,
-  FETCH_SOURCES,
-  GET_MEDIA,
-  SELECT_SOURCE,
-  START_STREAM,
-  TOGGLE_STREAM 
-} from '../Constants/ActionTypes'
-import { handleActions, handleAction } from 'redux-actions'
+import * as Actions from '../Constants/ActionTypes'
+import { handleActions } from 'redux-actions'
 
 const defaultState = {
   media: null,
+  peer: null,
   socket: null,
   sources: [],
   sourceSelected: {},
@@ -17,21 +11,24 @@ const defaultState = {
 }
 
 const streamReducer = handleActions({
-  [CONNECT_SIGNAL]: (state, action) => ({
-    ...state, socket: console.log('payload', action.payload) && action.payload
+  [Actions.CREATE_PEER]: (state, action) => ({
+    ...state, peer: action.peer
   }),
-  [FETCH_SOURCES]: (state, action) => ({
+  [Actions.GET_TOKEN]: (state, action) => ({
+    ...state, socket: action.payload
+  }),
+  [Actions.FETCH_SOURCES]: (state, action) => ({
     ...state, sources: action.payload
   }),
-  [SELECT_SOURCE]: (state, action) => ({
+  [Actions.SELECT_SOURCE]: (state, action) => ({
     ...state, sourceSelected: (state.sources.length > 0) ? 
       state.sources.find(source => source.id === action.payload) : 
       {}
   }),
-  [GET_MEDIA]: (state, action) => ({
+  [Actions.GET_MEDIA]: (state, action) => ({
     ...state, media: action.payload
   }),
-  [TOGGLE_STREAM]: (state, action) => ({
+  [Actions.TOGGLE_STREAM]: (state, action) => ({
     ...state, streaming: !state.streaming
   })
 }, defaultState)
