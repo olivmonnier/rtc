@@ -3,8 +3,6 @@ import { Card, CardText, CardMedia, CardActions } from 'material-ui/Card'
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton'
-import Streamer from '../Services/Streamer'
-import RTCPeerConnection from '../Services/RTCPeerConnection'
 
 const selectSourceComponent = (states, actions) => {
   const { sourceSelected, sources } = states
@@ -54,10 +52,7 @@ class Content extends Component {
           <FlatButton 
             label="Action1" 
             disabled={!states.sourceSelected.hasOwnProperty('id')}
-            onClick={() => {
-              const rtcPeer = new RTCPeerConnection()
-              rtcPeer.addStream(states.media)
-            }}/>
+            onClick={actions.connectSignal}/>
         </CardActions>
       </Card>
     )

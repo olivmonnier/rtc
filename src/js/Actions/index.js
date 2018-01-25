@@ -1,4 +1,5 @@
 import {
+  CONNECT_SIGNAL,
   FETCH_SOURCES,
   GET_MEDIA,
   SELECT_SOURCE,
@@ -7,6 +8,9 @@ import {
 } from '../Constants/ActionTypes'
 import { createAction } from 'redux-actions'
 import Streamer from '../Services/Streamer'
+import RTCPeer from '../Services/RTCPeer'
+
+export const connectSignal = createAction(CONNECT_SIGNAL, RTCPeer.connectSignal)
 
 export const fetchSources = createAction(FETCH_SOURCES, Streamer.getSources)
 

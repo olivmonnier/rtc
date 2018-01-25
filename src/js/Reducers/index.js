@@ -1,4 +1,5 @@
 import { 
+  CONNECT_SIGNAL,
   FETCH_SOURCES,
   GET_MEDIA,
   SELECT_SOURCE,
@@ -8,13 +9,17 @@ import {
 import { handleActions, handleAction } from 'redux-actions'
 
 const defaultState = {
+  media: null,
+  socket: null,
   sources: [],
   sourceSelected: {},
-  media: null,
   streaming: false
 }
 
 const streamReducer = handleActions({
+  [CONNECT_SIGNAL]: (state, action) => ({
+    ...state, socket: console.log('payload', action.payload) && action.payload
+  }),
   [FETCH_SOURCES]: (state, action) => ({
     ...state, sources: action.payload
   }),
