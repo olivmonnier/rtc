@@ -4,6 +4,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton'
 import Streamer from '../Services/Streamer'
+import RTCPeerConnection from '../Services/RTCPeerConnection'
 
 const selectSourceComponent = (states, actions) => {
   const { sourceSelected, sources } = states
@@ -50,8 +51,13 @@ class Content extends Component {
           <video autoPlay muted id="localVideo" src={states.media ? URL.createObjectURL(states.media) : ''}></video>
         </CardMedia>
         <CardActions>
-          <FlatButton label="Action1" onClick={actions.toggleStream}/>
-          <FlatButton label="Action2" onClick={() => Streamer.createPeerConnection(states.media)}/>
+          <FlatButton 
+            label="Action1" 
+            disabled={!states.sourceSelected.hasOwnProperty('id')}
+            onClick={() => {
+              const rtcPeer = new RTCPeerConnection()
+              rtcPeer.addStream(states.media)
+            }}/>
         </CardActions>
       </Card>
     )

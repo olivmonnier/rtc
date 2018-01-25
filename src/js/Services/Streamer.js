@@ -1,9 +1,6 @@
-const io = require('socket.io-client')
-const Peer = require('simple-peer')
-const { desktopCapturer } = require('electron')
-import { rtcServer, media } from '../Configs'
 
-let peer
+const { desktopCapturer } = require('electron')
+import { media } from '../Configs'
 
 export default {
   getSources() {
@@ -20,23 +17,28 @@ export default {
 
       return navigator.mediaDevices.getUserMedia(media)
     }
-  },
-  createPeerConnection(stream) {
-    const socket = io(rtcServer)
-    socket.on('connect', () => console.log('ID', socket.id))
-    socket.on('message', (data) => onMessage(socket, stream, data))
-  }
+  }//,
+  // createPeerConnection(stream) {
+  //   const socket = io(rtcServer)
+  //   socket.on('connect', () => console.log('ID', socket.id))
+  //   socket.on('message', (data) => onMessage(socket, stream, data))
+  // }
 }
 
-function onMessage(socket, stream, data) {
-  console.log(data)
-  if (data === 'ready') {
-    if (peer) {
-      peer.destroy()
-    }
-    peer = new Peer({ initiator: true, stream })
-    peer.on('signal', (signal) => socket.emit('message', JSON.stringify(signal)))
-  } else {
-    peer.signal(JSON.parse(data))
-  }
-}
+// function onMessage(socket, stream, data) {
+//   console.log(data)
+//   const { state, signal } = JSON.parse(data)
+
+//   if (state === 'ready') {
+//     if (peer) {
+//       peer.destroy()
+//     }
+//     peer = new Peer({ initiator: true, stream })
+//     peer.on('signal', (signal) => socket.emit('message', JSON.stringify({
+//       state: 'connect',
+//       signal
+//     })))
+//   } else if (state === 'connect') {
+//     peer.signal(signal)
+//   }
+// }
