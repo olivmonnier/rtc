@@ -1,7 +1,9 @@
 import * as Actions from '../Constants/ActionTypes'
 import { handleActions } from 'redux-actions'
+import { TAB_CONTENT } from '../Constants';
 
 const defaultState = {
+  activeTab: TAB_CONTENT,
   media: null,
   peer: null,
   socket: null,
@@ -24,6 +26,9 @@ const streamReducer = handleActions({
     ...state, sourceSelected: (state.sources.length > 0) ? 
       state.sources.find(source => source.id === action.payload) : 
       {}
+  }),
+  [Actions.SET_ACTIVE_TAB]: (state, action) => ({
+    ...state, activeTab: action.payload
   }),
   [Actions.GET_MEDIA]: (state, action) => ({
     ...state, media: action.payload

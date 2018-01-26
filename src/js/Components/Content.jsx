@@ -1,60 +1,36 @@
 import React, { Component } from 'react'
-import { Card, CardText, CardMedia, CardActions } from 'material-ui/Card'
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton'
-
-const selectSourceComponent = (states, actions) => {
-  const { sourceSelected, sources } = states
-  const { selectSource } = actions
-
-  return (
-    <SelectField
-      floatingLabelText="Source"
-      onChange={selectSource}
-      value={(sourceSelected !== {}) ? sourceSelected.id : ''}
-      autoWidth={true}
-      maxHeight={300}>
-      {
-        sources.map(source => (
-          <MenuItem value={source.id} key={source.id} primaryText={source.name} />
-        ))
-      }
-    </SelectField>
-  )
-}
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton'
+import { rtcServer } from '../Configs'
 
 class Content extends Component {
-  constructor(props) {
-    super(props)
-  }
-  componentDidMount(){
-    this.props.actions.fetchSources()
-  }
-  componentWillReceiveProps(nextProps) {
-    const { states, actions } = this.props
 
-    if (nextProps.states.sourceSelected !== states.sourceSelected) {
-      actions.getMedia(nextProps.states.sourceSelected)
-    }
-  }
   render() {
     const { states, actions } = this.props
     return (
-      <Card>
-        <CardText>
-          { selectSourceComponent(states, actions) }
-        </CardText>             
-        <CardMedia>
+      <div className="tab-layout">
+        <div className="tab-layout__row">
+          <TextField 
+            id="urlSignal" 
+            value={(states.socket) 
+              ? `${rtcServer}?token=${states.socket.id}` 
+              : ''
+            } 
+            floatingLabelText="Url"
+            onChange={(e) => e.preventDefault()}
+            disabled={!states.socket}
+            fullWidth={true}/>
+        </div>
+        <div className="tab-layout__row">
           <video autoPlay muted id="localVideo" src={states.media ? URL.createObjectURL(states.media) : ''}></video>
-        </CardMedia>
-        <CardActions>
-          <FlatButton 
-            label="Action1" 
+        </div>
+        <div className="tab-layout__row">
+          <RaisedButton
+            label="Action1"
             disabled={!states.sourceSelected.hasOwnProperty('id')}
-            onClick={actions.connectSignal}/>
-        </CardActions>
-      </Card>
+            onClick={actions.connectSignal} />
+        </div>
+      </div>
     )
   }
 }

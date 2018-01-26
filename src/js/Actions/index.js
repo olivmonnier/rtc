@@ -9,6 +9,8 @@ export const fetchSources = createAction(Actions.FETCH_SOURCES, Streamer.getSour
 
 export const selectSource = createAction(Actions.SELECT_SOURCE, (event, key, payload) => payload)
 
+export const setActiveTab = createAction(Actions.SET_ACTIVE_TAB);
+
 export const toggleStream = createAction(Actions.TOGGLE_STREAM)
 
 export const getMedia = createAction(Actions.GET_MEDIA, (source) => Streamer.getUserMedia(source))
