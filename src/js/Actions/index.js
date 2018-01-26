@@ -34,16 +34,16 @@ export const connectSignal = () => (dispatch) => {
 }
 
 export const connectPeer = (signal) => (dispatch, getState) => {
-  const { peer } = getState()
+  const { rtcState } = getState()
 
-  peer.signal(signal)
+  rtcState.peer.signal(signal)
 }
 
 export const createPeer = () => (dispatch, getState) => {
-  const { socket, media } = getState()
-  const peer = new SimplePeer({ initiator: true, stream: media || false })
+  const { rtcState, mediaState } = getState()
+  const peer = new SimplePeer({ initiator: true, stream: mediaState.media || false })
 
-  peer.on('signal', (signal) => socket.emit('message', JSON.stringify({
+  peer.on('signal', (signal) => rtcState.socket.emit('message', JSON.stringify({
     state: 'connect',
     signal
   })))

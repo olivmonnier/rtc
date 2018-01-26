@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
 import { Tabs, Tab } from 'material-ui/Tabs'
-import Content from './Content.jsx'
+import Preview from './Preview.jsx'
 import TitleBar from './TitleBar.jsx'
 import Settings from './Settings.jsx'
-import { TAB_CONTENT, TAB_SETTINGS } from '../Constants'
+import { TAB_PREVIEW, TAB_SETTINGS } from '../Constants'
 
 class Main extends Component {
   onTabNav(tab) {
@@ -17,23 +17,24 @@ class Main extends Component {
   render() {
     console.log(this.props)
     const { states, actions } = this.props
+    const { activeTab } = states.appState
 
     return (
-      <Paper rounded={false}>
+      <Paper rounded={false} style={{ height: '100%' }}>
         <TitleBar/>
         <Tabs 
-          value={ states.activeTab }
+          value={ activeTab }
           onChange={actions.setActiveTab}>
           <Tab
-            value={TAB_CONTENT}
-            label="CONTENT"/>
+            value={TAB_PREVIEW}
+            label="PREVIEW"/>
           <Tab
             value={TAB_SETTINGS}
             label="SETTINGS"/>
         </Tabs>
         <div>
-          { states.activeTab === TAB_CONTENT
-              ? <Content {...this.props}/>
+          { activeTab === TAB_PREVIEW
+              ? <Preview {...this.props}/>
               : <Settings {...this.props}/>
           }
         </div>

@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField'
 import MenuItem from 'material-ui/MenuItem'
 
 const selectSourceComponent = (states, actions) => {
-  const { sourceSelected, sources } = states
+  const { sourceSelected, sources } = states.mediaState
   const { selectSource } = actions
 
   return (
@@ -32,9 +32,12 @@ export default class Settings extends Component {
   }
   componentWillReceiveProps(nextProps) {
     const { states, actions } = this.props
+    const { sourceSelected } = states.mediaState
+    const nextSourceSelected = nextProps.states.mediaState.sourceSelected
 
-    if (nextProps.states.sourceSelected !== states.sourceSelected) {
-      actions.getMedia(nextProps.states.sourceSelected)
+
+    if (nextSourceSelected !== sourceSelected) {
+      actions.getMedia(nextSourceSelected)
     }
   }
   render() {
@@ -42,8 +45,11 @@ export default class Settings extends Component {
 
     return (
       <div className="tab-layout">
-        <div>
+        <div className="tab-layout__row">
           {selectSourceComponent(states, actions)}
+        </div>
+        <div className="tab-layout__row">
+          
         </div>
       </div>
     )

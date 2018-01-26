@@ -1,2 +1,2 @@
-export const TAB_CONTENT = 'TAB_CONTENT'
+export const TAB_PREVIEW = 'TAB_PREVIEW'
 export const TAB_SETTINGS = 'TAB_SETTINGS'
