@@ -32,14 +32,30 @@ export const connectPeer = (signal) => (dispatch, getState) => {
 
 export const createPeer = () => (dispatch, getState) => {
   const { rtcState, mediaState } = getState()
-  const peer = new SimplePeer({ initiator: true, stream: mediaState.media || false })
+  let { peer } = rtcState
+
+  if (peer) dispatch(destroyPeer())
+
+  peer = new SimplePeer({ initiator: true, stream: mediaState.media || false })
 
   peer.on('signal', (signal) => rtcState.socket.emit('message', JSON.stringify({
     state: 'connect',
     signal
   })))
 
+  peer.on('close', dispatch(destroyPeer()))
+
   dispatch({ type: Actions.CREATE_PEER, peer })
+}
+
+export const destroyPeer = () => (dispatch, getState) => {
+  const { rtcState } = getState()
+  const { peer } = rtcState
+
+  if(peer) {
+    peer.destroy()
+    dispatch({ type: Actions.DELETE_PEER })
+  }
 }
 
 export const getToken = createAction(Actions.GET_TOKEN)

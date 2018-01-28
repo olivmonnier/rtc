@@ -1,6 +1,7 @@
 export const CONNECT_PEER = 'CONNECT_PEER'
 export const CONNECT_SIGNAL = 'CONNECT_SIGNAL'
 export const CREATE_PEER = 'CREATE_PEER'
+export const DELETE_PEER = 'DELETE_PEER'
 export const FETCH_SOURCES = 'FETCH_SOURCES'
 export const GET_MEDIA = 'GET_MEDIA'
 export const GET_TOKEN = 'GET_TOKEN'
