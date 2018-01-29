@@ -1,13 +1,14 @@
 import * as Actions from '../Constants/ActionTypes'
+import * as Constants from '../Constants'
 import { handleActions } from 'redux-actions'
 
 const defaultState = {
   media: null,
   sources: [],
   sourceSelected: {},
-  maxWidth: 1920,
-  maxHeight: 1080,
-  maxFrameRate: 25
+  maxWidth: Constants.MAX_MEDIA_WIDTH,
+  maxHeight: Constants.MAX_MEDIA_HEIGHT,
+  maxFrameRate: Constants.MAX_MEDIA_FRAMERATE
 
 }
 
