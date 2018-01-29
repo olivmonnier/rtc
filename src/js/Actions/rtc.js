@@ -34,7 +34,7 @@ export const createPeer = () => (dispatch, getState) => {
   const { rtcState, mediaState } = getState()
   let { peer } = rtcState
 
-  if (peer) dispatch(destroyPeer())
+  if (peer && !peer.destroyed) dispatch(destroyPeer())
 
   peer = new SimplePeer({ initiator: true, stream: mediaState.media || false })
 
@@ -43,7 +43,7 @@ export const createPeer = () => (dispatch, getState) => {
     signal
   })))
 
-  peer.on('close', dispatch(destroyPeer()))
+  peer.on('close', () => dispatch(destroyPeer()))
 
   dispatch({ type: Actions.CREATE_PEER, peer })
 }
@@ -52,9 +52,8 @@ export const destroyPeer = () => (dispatch, getState) => {
   const { rtcState } = getState()
   const { peer } = rtcState
 
-  if(peer) {
+  if(peer && !peer.destroyed) {
     peer.destroy()
-    dispatch({ type: Actions.DELETE_PEER })
   }
 }
 

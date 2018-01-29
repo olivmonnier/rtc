@@ -35,7 +35,6 @@ export default class Settings extends Component {
     const { sourceSelected } = states.mediaState
     const nextSourceSelected = nextProps.states.mediaState.sourceSelected
 
-
     if (nextSourceSelected !== sourceSelected) {
       actions.getMedia(nextSourceSelected)
     }
