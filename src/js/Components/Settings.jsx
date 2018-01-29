@@ -41,6 +41,7 @@ export default class Settings extends Component {
   }
   render() {
     const { states, actions } = this.props
+    const { mediaState, rtcState } = states
 
     return (
       <div className="tab-layout">
@@ -48,7 +49,28 @@ export default class Settings extends Component {
           {selectSourceComponent(states, actions)}
         </div>
         <div className="tab-layout__row">
-          
+          <TextField 
+            id="mediaFramerate" 
+            floatingLabelText="Framerate"
+            disabled={rtcState.streaming}
+            value={mediaState.maxFrameRate} 
+            onChange={actions.updateFramerate}/>
+        </div>
+        <div className="tab-layout__row">
+          <TextField
+            id="mediaWidth"
+            floatingLabelText="Width"
+            disabled={rtcState.streaming}
+            value={mediaState.maxWidth}
+            onChange={actions.updateWidth}/>
+        </div>
+        <div className="tab-layout__row">
+          <TextField
+            id="mediaHeight"
+            floatingLabelText="Height"
+            disabled={rtcState.streaming}
+            value={mediaState.maxHeight}
+            onChange={actions.updateHeight}/>
         </div>
       </div>
     )

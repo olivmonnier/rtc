@@ -1,3 +1,4 @@
+import * as Constants from '../Constants'
 const isWin = /^win/.test(process.platform)
 
 export const audio = isWin ? { mandatory: { chromeMediaSource: 'desktop' } } : true
@@ -5,12 +6,12 @@ export const audio = isWin ? { mandatory: { chromeMediaSource: 'desktop' } } : t
 export const video = {
   mandatory: {
     chromeMediaSource: 'desktop',
-    minWidth: 1280,
-    maxWidth: 1920,
-    minHeight: 720,
-    maxHeight: 1080,
-    minFrameRate: 15,
-    maxFrameRate: 25
+    minWidth: Constants.MIN_MEDIA_WIDTH,
+    maxWidth: Constants.MAX_MEDIA_WIDTH,
+    minHeight: Constants.MIN_MEDIA_HEIGHT,
+    maxHeight: Constants.MAX_MEDIA_HEIGHT,
+    minFrameRate: Constants.MIN_MEDIA_FRAMERATE,
+    maxFrameRate: Constants.MAX_MEDIA_FRAMERATE
   }
 }
 

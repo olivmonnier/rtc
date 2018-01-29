@@ -11,11 +11,20 @@ export default {
       })
     })
   },
-  getUserMedia(source) {
-    if (source) {
-      media.video.mandatory['chromeMediaSourceId'] = source.id
+  getUserMedia(source, config) {
+    const { maxWidth, maxHeight, maxFrameRate } = config
 
-      return navigator.mediaDevices.getUserMedia(media)
+    if (source) {
+      let mediaConfig = media
+
+      mediaConfig.video.mandatory = Object.assign({}, mediaConfig.video.mandatory, {
+        chromeMediaSourceId: source.id,
+        maxWidth,
+        maxHeight,
+        maxFrameRate
+      })
+
+      return navigator.mediaDevices.getUserMedia(mediaConfig)
     }
   }
 }
