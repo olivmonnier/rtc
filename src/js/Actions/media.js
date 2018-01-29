@@ -27,29 +27,26 @@ export const getMedia = (source) => (dispatch, getState) => {
     })
 }
 export const updateFramerate = createAction(Actions.UPDATE_FPS, (event, newValue) => {
-  const intFps = parseInt(newValue, 10)
+  let intFps = parseInt(newValue, 10) || MAX_MEDIA_FRAMERATE
 
   if (intFps <= MIN_MEDIA_FRAMERATE) {
-    return MIN_MEDIA_FRAMERATE
-  } else {
-    return intFps || MAX_MEDIA_FRAMERATE
+    intFps = MIN_MEDIA_FRAMERATE
   }
+  return intFps
 })
 export const updateWidth = createAction(Actions.UPDATE_WIDTH, (event, newValue) => {
-  const intWidth = parseInt(newValue, 10)
+  let intWidth = parseInt(newValue, 10) || MAX_MEDIA_WIDTH
 
   if (intWidth <= MIN_MEDIA_WIDTH) {
-    return MIN_MEDIA_WIDTH
-  } else {
-    return intWidth || MAX_MEDIA_WIDTH
-  }
+    intWidth = MIN_MEDIA_WIDTH
+  } 
+  return intWidth 
 })
 export const updateHeight = createAction(Actions.UPDATE_HEIGHT, (event, newValue) => {
-  const intHeight = parseInt(newValue, 10)
+  let intHeight = parseInt(newValue, 10) || MAX_MEDIA_HEIGHT
 
   if (intHeight <= MIN_MEDIA_HEIGHT) {
-    return MIN_MEDIA_HEIGHT
-  } else {
-    return intHeight || MAX_MEDIA_HEIGHT
+    intHeight = MIN_MEDIA_HEIGHT
   }
+  return intHeight 
 })
