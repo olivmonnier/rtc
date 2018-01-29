@@ -32,10 +32,18 @@ export default class Settings extends Component {
   }
   componentWillReceiveProps(nextProps) {
     const { states, actions } = this.props
-    const { sourceSelected } = states.mediaState
+    const { sourceSelected, maxFrameRate, maxWidth, maxHeight } = states.mediaState
     const nextSourceSelected = nextProps.states.mediaState.sourceSelected
+    const nextMaxFramerate = nextProps.states.mediaState.maxFrameRate
+    const nextMaxWidth = nextProps.states.mediaState.maxWidth
+    const nextMaxHeight = nextProps.states.mediaState.maxHeight
 
-    if (nextSourceSelected !== sourceSelected) {
+    if (
+      nextSourceSelected !== sourceSelected
+      || nextMaxFramerate !== maxFrameRate
+      || nextMaxWidth !== maxWidth
+      || nextMaxHeight !== maxHeight
+    ) {
       actions.getMedia(nextSourceSelected)
     }
   }
