@@ -21,7 +21,7 @@ class Main extends Component {
 
     return (
       <Paper rounded={false} style={{ height: '100%' }}>
-        <TitleBar/>
+        <TitleBar {...this.props}/>
         <Tabs 
           value={ activeTab }
           onChange={actions.setActiveTab}>

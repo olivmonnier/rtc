@@ -5,8 +5,10 @@ let mainWindow
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 680,
-    height: 460
+    width: 500,
+    height: 620,
+    minWidth: 500,
+    minHeight: 620
   })
 
   // mainWindow.setMenu(null)

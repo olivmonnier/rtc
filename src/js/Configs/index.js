@@ -8,7 +8,9 @@ export const video = {
     minWidth: 1280,
     maxWidth: 1920,
     minHeight: 720,
-    maxHeight: 1080
+    maxHeight: 1080,
+    minFrameRate: 15,
+    maxFrameRate: 25
   }
 }
 
