@@ -11,9 +11,6 @@ const rtcReducer = handleActions({
   [Actions.CREATE_PEER]: (state, action) => ({
     ...state, peer: action.peer
   }),
-  [Actions.DELETE_PEER]: (state, action) => ({
-    ...state, peer: null
-  }),
   [Actions.GET_TOKEN]: (state, action) => ({
     ...state, socket: action.payload
   }),
