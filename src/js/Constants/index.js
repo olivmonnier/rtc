@@ -6,3 +6,4 @@ export const MAX_MEDIA_HEIGHT = 768
 export const MIN_MEDIA_FRAMERATE = 15
 export const MIN_MEDIA_WIDTH = 320
 export const MIN_MEDIA_HEIGHT = 180
+export const RTC_SIGNAL_SERVER = 'https://webrtc-stream-server.herokuapp.com/'

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack -d --watch",
     "build": "webpack",
-    "electron": "electron .",
+    "start": "electron .",
     "dist": "electron-packager ./build"
   },
   "author": "",

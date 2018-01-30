@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
-import { rtcServer } from '../Configs'
+import { RTC_SIGNAL_SERVER } from '../Constants'
 
 class Content extends Component {
   render() {
@@ -13,7 +13,7 @@ class Content extends Component {
           <TextField 
             id="urlSignal" 
             value={(rtcState.socket) 
-              ? `${rtcServer}?token=${rtcState.socket.id}` 
+              ? `${rtcState.signalServer}?token=${rtcState.socket.id}` 
               : ''
             } 
             floatingLabelText="Url"

@@ -6,9 +6,9 @@ let mainWindow
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 500,
-    height: 620,
+    height: 650,
     minWidth: 500,
-    minHeight: 620
+    minHeight: 650
   })
 
   // mainWindow.setMenu(null)

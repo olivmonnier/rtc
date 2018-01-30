@@ -81,6 +81,14 @@ export default class Settings extends Component {
             value={mediaState.maxHeight}
             onChange={actions.updateHeight}/>
         </div>
+        <div className="tab-layout__row">
+          <TextField
+            id="rtcSignalServer"
+            floatingLabelText="Url Signal Server"
+            disabled={rtcState.streaming}
+            value={rtcState.signalServer}
+            onChange={actions.updateSignal}/>
+        </div>
       </div>
     )
   }

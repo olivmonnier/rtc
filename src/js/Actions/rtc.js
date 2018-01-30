@@ -2,12 +2,12 @@ import * as Actions from '../Constants/ActionTypes'
 import io from 'socket.io-client'
 import SimplePeer from 'simple-peer'
 import { createAction } from 'redux-actions'
-import { rtcServer } from '../Configs'
 
 export const toggleStream = createAction(Actions.TOGGLE_STREAM)
 
-export const connectSignal = () => (dispatch) => {
-  const socket = io(rtcServer)
+export const connectSignal = () => (dispatch, getState) => {
+  const { rtcState } = getState()
+  const socket = io(rtcState.signalServer)
 
   socket.on('connect', () => {
     dispatch(getToken(socket))
@@ -58,3 +58,5 @@ export const destroyPeer = () => (dispatch, getState) => {
 }
 
 export const getToken = createAction(Actions.GET_TOKEN)
+
+export const updateSignal = createAction(Actions.UPDATE_SIGNAL, (event, newValue) => newValue)

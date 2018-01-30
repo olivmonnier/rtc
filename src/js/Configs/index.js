@@ -1,7 +1,7 @@
 import * as Constants from '../Constants'
 const isWin = /^win/.test(process.platform)
 
-export const audio = isWin ? { mandatory: { chromeMediaSource: 'desktop' } } : true
+export const audio = isWin ? { mandatory: { chromeMediaSource: 'desktop' } } : false
 
 export const video = {
   mandatory: {
@@ -19,5 +19,3 @@ export const media = {
   audio,
   video
 }
-
-export const rtcServer = 'https://webrtc-stream-server.herokuapp.com/'

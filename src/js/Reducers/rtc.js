@@ -1,10 +1,12 @@
 import * as Actions from '../Constants/ActionTypes'
+import { RTC_SIGNAL_SERVER } from '../Constants'
 import { handleActions } from 'redux-actions'
 
 const defaultState = {
   peer: null,
   streaming: false,
-  socket: null
+  socket: null,
+  signalServer: RTC_SIGNAL_SERVER
 }
 
 const rtcReducer = handleActions({
@@ -16,6 +18,9 @@ const rtcReducer = handleActions({
   }),
   [Actions.TOGGLE_STREAM]: (state, action) => ({
     ...state, streaming: !state.streaming
+  }),
+  [Actions.UPDATE_SIGNAL]: (state, action) => ({
+    ...state, signalServer: action.payload
   })
 }, defaultState)
 
