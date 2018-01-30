@@ -12,7 +12,12 @@ export default {
     })
   },
   getUserMedia(source, config) {
-    const { maxWidth, maxHeight, maxFrameRate } = config
+    let { maxWidth, maxHeight, maxFrameRate } = config
+    const { minWidth, minHeight, minFrameRate } = media.video.mandatory
+
+    maxWidth = (maxWidth < minWidth) ? minWidth : maxWidth
+    maxHeight = (maxHeight < minHeight) ? minHeight : maxHeight
+    maxFrameRate = (maxFrameRate < minFrameRate) ? minFrameRate : maxFrameRate
 
     if (source) {
       let mediaConfig = media

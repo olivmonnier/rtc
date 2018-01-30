@@ -62,6 +62,7 @@ export default class Settings extends Component {
             floatingLabelText="Framerate"
             disabled={rtcState.streaming}
             value={mediaState.maxFrameRate} 
+            onBlur={actions.validFramerate}
             onChange={actions.updateFramerate}/>
         </div>
         <div className="tab-layout__row">

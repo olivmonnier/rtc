@@ -10,6 +10,7 @@ import {
 import { createAction } from 'redux-actions'
 import Streamer from '../Services/Streamer'
 import { createPeer } from './rtc'
+import { setTimeout } from 'timers';
 
 export const fetchSources = createAction(Actions.FETCH_SOURCES, Streamer.getSources)
 export const selectSource = createAction(Actions.SELECT_SOURCE, (event, key, payload) => payload)
@@ -27,26 +28,12 @@ export const getMedia = (source) => (dispatch, getState) => {
     })
 }
 export const updateFramerate = createAction(Actions.UPDATE_FPS, (event, newValue) => {
-  let intFps = parseInt(newValue, 10) || MAX_MEDIA_FRAMERATE
-
-  if (intFps <= MIN_MEDIA_FRAMERATE) {
-    intFps = MIN_MEDIA_FRAMERATE
-  }
-  return intFps
+  return parseInt(newValue, 10) || MAX_MEDIA_FRAMERATE
 })
-export const updateWidth = createAction(Actions.UPDATE_WIDTH, (event, newValue) => {
-  let intWidth = parseInt(newValue, 10) || MAX_MEDIA_WIDTH
 
-  if (intWidth <= MIN_MEDIA_WIDTH) {
-    intWidth = MIN_MEDIA_WIDTH
-  } 
-  return intWidth 
+export const updateWidth = createAction(Actions.UPDATE_WIDTH, (event, newValue) => {
+  return parseInt(newValue, 10) || MAX_MEDIA_WIDTH
 })
 export const updateHeight = createAction(Actions.UPDATE_HEIGHT, (event, newValue) => {
-  let intHeight = parseInt(newValue, 10) || MAX_MEDIA_HEIGHT
-
-  if (intHeight <= MIN_MEDIA_HEIGHT) {
-    intHeight = MIN_MEDIA_HEIGHT
-  }
-  return intHeight 
+  return parseInt(newValue, 10) || MAX_MEDIA_HEIGHT
 })
