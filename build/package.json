@@ -1,0 +1,9 @@
+{
+  "name": "rtcremote",
+  "productName": "RTCRemote",
+  "version": "1.0.0",
+  "description": "rtc remote",
+  "main": "main.js",
+  "author": "olivmonnier",
+  "license": "ISC"
+}
