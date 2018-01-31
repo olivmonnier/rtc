@@ -46,6 +46,10 @@ export default class Settings extends Component {
     ) {
       actions.getMedia(nextSourceSelected)
     }
+
+    if (nextProps.states.rtcState.signalServer !== states.rtcState.signalServer) {
+      actions.disconnectSignal()
+    }
   }
   render() {
     const { states, actions } = this.props
@@ -54,32 +58,36 @@ export default class Settings extends Component {
     return (
       <div className="tab-layout">
         <div className="tab-layout__row">
-          {selectSourceComponent(states, actions)}
+          <div className="tab-layout__item">
+            {selectSourceComponent(states, actions)}
+          </div>
+          <div className="tab-layout__item">
+            <TextField
+              id="mediaFramerate"
+              floatingLabelText="Framerate"
+              disabled={rtcState.streaming}
+              value={mediaState.maxFrameRate}
+              onBlur={actions.validFramerate}
+              onChange={actions.updateFramerate} />
+          </div>
         </div>
         <div className="tab-layout__row">
-          <TextField 
-            id="mediaFramerate" 
-            floatingLabelText="Framerate"
-            disabled={rtcState.streaming}
-            value={mediaState.maxFrameRate} 
-            onBlur={actions.validFramerate}
-            onChange={actions.updateFramerate}/>
-        </div>
-        <div className="tab-layout__row">
-          <TextField
-            id="mediaWidth"
-            floatingLabelText="Width"
-            disabled={rtcState.streaming}
-            value={mediaState.maxWidth}
-            onChange={actions.updateWidth}/>
-        </div>
-        <div className="tab-layout__row">
-          <TextField
-            id="mediaHeight"
-            floatingLabelText="Height"
-            disabled={rtcState.streaming}
-            value={mediaState.maxHeight}
-            onChange={actions.updateHeight}/>
+          <div className="tab-layout__item">
+            <TextField
+              id="mediaWidth"
+              floatingLabelText="Width"
+              disabled={rtcState.streaming}
+              value={mediaState.maxWidth}
+              onChange={actions.updateWidth}/>
+          </div>
+          <div className="tab-layout__item">
+            <TextField
+              id="mediaHeight"
+              floatingLabelText="Height"
+              disabled={rtcState.streaming}
+              value={mediaState.maxHeight}
+              onChange={actions.updateHeight}/>
+          </div>
         </div>
         <div className="tab-layout__row">
           <TextField
@@ -87,7 +95,8 @@ export default class Settings extends Component {
             floatingLabelText="Url Signal Server"
             disabled={rtcState.streaming}
             value={rtcState.signalServer}
-            onChange={actions.updateSignal}/>
+            onChange={actions.updateSignal}
+            fullWidth={true}/>
         </div>
       </div>
     )

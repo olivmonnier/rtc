@@ -44,7 +44,7 @@ class TitleBar extends Component {
     actions.toggleStream()
 
     if (!streaming) {
-      if (!socket) return actions.connectSignal()
+      if (!socket || socket.disconnected) return actions.connectSignal()
       actions.createPeer()
     } else {
       actions.destroyPeer()

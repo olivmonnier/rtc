@@ -24,6 +24,15 @@ export const connectSignal = () => (dispatch, getState) => {
   })
 }
 
+export const disconnectSignal = () => (dispatch, getState) => {
+  const { rtcState } = getState()
+  const { socket } = rtcState
+  
+  if (socket && !socket.disconnected) {
+    socket.disconnect()
+  }
+}
+
 export const connectPeer = (signal) => (dispatch, getState) => {
   const { rtcState } = getState()
 

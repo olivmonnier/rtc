@@ -7,18 +7,23 @@
 
 .tab-layout {
   padding: 24px;
-  overflow-y: auto;
 }
 
 .tab-layout__row {
   padding-top: 12px;
   padding-bottom: 12px;
+  display: flex;
+  flex-flow: row nowrap;
 }
 .tab-layout__row:first-child {
   padding-top: 0;
 }
 .tab-layout__row:last-child {
   padding-bottom: 0;
+}
+
+.tab-layout__item {
+  flex: 1 1 auto;
 }
 
 .tools {

@@ -21,9 +21,7 @@ class Content extends Component {
             disabled={!rtcState.socket}
             fullWidth={true}/>
         </div>
-        <div className="tab-layout__row">
-          <video autoPlay muted id="localVideo" src={mediaState.media ? URL.createObjectURL(mediaState.media) : ''}></video>
-        </div>
+        <video autoPlay muted id="localVideo" src={mediaState.media ? URL.createObjectURL(mediaState.media) : ''}></video>
       </div>
     )
   }
