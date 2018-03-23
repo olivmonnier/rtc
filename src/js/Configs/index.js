@@ -1,7 +1,7 @@
 import * as Constants from '../Constants'
 const isWin = /^win/.test(process.platform)
 
-export const audio = isWin ? { mandatory: { chromeMediaSource: 'desktop' } } : false
+export const audio = false//isWin ? { mandatory: { chromeMediaSource: 'desktop' } } : false
 
 export const video = {
   mandatory: {
